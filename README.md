@@ -1,6 +1,6 @@
-# Alternative Assessment
+Alternative Assessment
 
-## Mortality Prediction 
-## Multilayer Perceptron Neural Network
+Mortality Prediction 
+Multilayer Perceptron Neural Network
 
-### Dataset: Kaggle
+Dataset: Kaggle
