@@ -1,6 +1,13 @@
+import numpy as np
+import random
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+
+
+random.seed(42)
+np.random.seed(42)
+torch.manual_seed(42)
 
 class MLPModel(nn.Module):
     def __init__(self, input_dim, hidden_layers, dropout_rate):
