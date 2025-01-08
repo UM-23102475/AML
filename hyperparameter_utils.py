@@ -38,7 +38,8 @@ def train_and_evaluate(params, model_class, input_dim, train_dataset, validate_d
         float: Best validation loss achieved.
         dict: The hyperparameter configuration.
     """
-    
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+
     print(f"Testing configuration: {params}")
     hidden_layers = params['hidden_layers']
     dropout_rate = params['dropout_rate']
@@ -51,7 +52,7 @@ def train_and_evaluate(params, model_class, input_dim, train_dataset, validate_d
     train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
     validate_loader = DataLoader(validate_dataset, batch_size=batch_size)
     
-    early_stopping = EarlyStopping(patience=5, min_delta=0.001)
+    early_stopping = EarlyStopping(patience=20, min_delta=0.0001)
 
     best_validate_loss = float('inf')
     for epoch in range(num_epochs):
