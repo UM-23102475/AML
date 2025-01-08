@@ -1,6 +1,8 @@
+from early_stopping import EarlyStopping
+from torch.utils.data import DataLoader
+
 import random
 import torch
-from torch.utils.data import DataLoader
 
 def sample_hyperparameters(param_space):
     """
@@ -49,6 +51,8 @@ def train_and_evaluate(params, model_class, input_dim, train_dataset, validate_d
     train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
     validate_loader = DataLoader(validate_dataset, batch_size=batch_size)
     
+    early_stopping = EarlyStopping(patience=5, min_delta=0.001)
+
     best_validate_loss = float('inf')
     for epoch in range(num_epochs):
         model.train()
@@ -71,5 +75,10 @@ def train_and_evaluate(params, model_class, input_dim, train_dataset, validate_d
         if validate_loss < best_validate_loss:
             best_validate_loss = validate_loss
 
-    print(f"Validation Loss: {best_validate_loss:.4f}")
+        early_stopping.check(validate_loss)
+        if early_stopping.should_stop:
+        print(f"Early stopping triggered at epoch {epoch + 1}")
+        break
+
+        print(f"Validation Loss: {best_validate_loss:.4f}", "\n")
     return best_validate_loss, params
