@@ -4,7 +4,6 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-
 random.seed(42)
 np.random.seed(42)
 torch.manual_seed(42)

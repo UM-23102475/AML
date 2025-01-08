@@ -20,10 +20,10 @@ def sample_hyperparameters(param_space):
         dict: A randomly sampled hyperparameter configuration.
     """
     return {
-        'hidden_layers': np.random.choice(param_space['hidden_layers']),
-        'dropout_rate': np.random.choice(param_space['dropout_rate']),
-        'learning_rate': np.random.choice(param_space['learning_rate']),
-        'batch_size': np.random.choice(param_space['batch_size']),
+        'hidden_layers': random.choice(param_space['hidden_layers']),
+        'dropout_rate': random.choice(param_space['dropout_rate']),
+        'learning_rate': random.choice(param_space['learning_rate']),
+        'batch_size': random.choice(param_space['batch_size']),
     }
 
 def train_and_evaluate(params, model_class, input_dim, train_dataset, validate_dataset, criterion, num_epochs=10):
