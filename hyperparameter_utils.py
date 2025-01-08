@@ -1,8 +1,11 @@
 from early_stopping import EarlyStopping
 from torch.utils.data import DataLoader
 
+import numpy as np
 import random
 import torch
+
+np.random.seed(42)
 
 def sample_hyperparameters(param_space):
     """
