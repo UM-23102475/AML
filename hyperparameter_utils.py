@@ -75,10 +75,12 @@ def train_and_evaluate(params, model_class, input_dim, train_dataset, validate_d
         if validate_loss < best_validate_loss:
             best_validate_loss = validate_loss
 
-        early_stopping.check(validate_loss)
-        if early_stopping.should_stop:
-        print(f"Early stopping triggered at epoch {epoch + 1}")
-        break
+        if early_stopping:
+            early_stopping.check(validate_loss)
+            if early_stopping.should_stop:
+                print(f"Early stopping triggered at epoch {epoch + 1}")
+                break
 
-        print(f"Validation Loss: {best_validate_loss:.4f}", "\n")
+    print(f"Best Validation Loss for configuration {params}: {best_validate_loss:.4f}\n")
+
     return best_validate_loss, params
