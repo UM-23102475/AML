@@ -52,7 +52,7 @@ def train_and_evaluate(params, model_class, input_dim, train_dataset, validate_d
     train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
     validate_loader = DataLoader(validate_dataset, batch_size=batch_size)
     
-    early_stopping = EarlyStopping(patience=20, min_delta=0.0001)
+    early_stopping = EarlyStopping(patience=30, min_delta=0.0001)
 
     best_validate_loss = float('inf')
     for epoch in range(num_epochs):
